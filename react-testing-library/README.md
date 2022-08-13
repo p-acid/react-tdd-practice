@@ -42,6 +42,43 @@ yarn add -D @testing-library/react
 
 - `toMatchSnapshot()` : 스냅샷 테스트 = 화면에 표시되는 내용이 변경되었는지 확인
 
+## 타입스크립트
+
+> 마이그레이션 내용 정리
+
+### CRA Version
+
+```sh
+npx create-react-app --template=typescript [directory-name]
+```
+
+### 패키지 설치
+
+```sh
+yarn add typescript @types/node @types/react @types/react-dom @types/jest
+```
+
+### tsConfig.json 세팅
+
+- [Link : tsConfig.json](https://github.com/p-acid/react-tdd-practice/blob/main/react-testing-library/tsconfig.json)
+
+### SVG 파일 `import` 관련
+
+```ts
+// custom.d.ts
+
+declare module "*.svg" {
+  import * as React from "react";
+
+  export const ReactComponent: React.FunctionComponent<
+    React.SVGProps<SVGAElement> & { title?: string }
+  >;
+
+  const src: string;
+  export default src;
+}
+```
+
 # 코드 리팩토링
 
 ## 58p. 리액트 테스팅 라이브러리 기본 사용 예제

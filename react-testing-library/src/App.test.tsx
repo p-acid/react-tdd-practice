@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import App from "App";
 
 describe("<App />", () => {
   it("renders component correctly", () => {
@@ -14,7 +14,7 @@ describe("<App />", () => {
     expect(imageElements[0]).toHaveAttribute("src", "logo.svg");
     expect(headerElements).toHaveLength(1);
     expect(headerElements[0]).toHaveTextContent(
-      "Edit src/App.js and save to reload."
+      "Edit src/App.tsx and save to reload."
     );
     expect(screen).toMatchSnapshot();
   });
