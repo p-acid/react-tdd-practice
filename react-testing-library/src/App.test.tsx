@@ -4,6 +4,7 @@ import App from "./App";
 describe("<App />", () => {
   it("renders component correctly", () => {
     render(<App />);
+
     const linkElement = screen.getByText(/learn react/i);
     const imageElements = screen.getAllByRole("img");
     const headerElements = screen.getAllByRole("banner");
