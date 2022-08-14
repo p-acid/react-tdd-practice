@@ -1,17 +1,54 @@
-import { Container, Header } from 'AppStyle';
-import { Button } from 'Components';
-import { useCallback } from 'react';
+import { AppBox, Container, Form, TodoListWrapper } from 'AppStyle';
+import { Button, Input, TodoItem } from 'Components';
+import { FormEvent, useCallback, useRef, useState } from 'react';
 
 function App() {
-  const addTask = useCallback(() => {
-    alert('add!');
-  }, []);
+  const [todoList, setTodoList] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const addTask = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+
+      const inputValue = inputRef.current?.value;
+
+      if (!inputValue) return;
+
+      setTodoList((prev) => {
+        if (prev.includes(inputValue)) return prev;
+
+        return [...prev, inputValue];
+      });
+
+      event.currentTarget.reset();
+    },
+    [setTodoList, inputRef],
+  );
+
+  const removeTask = useCallback(
+    (content: string) => {
+      setTodoList((prev) => prev.filter((todoItem) => todoItem !== content));
+    },
+    [setTodoList],
+  );
 
   return (
     <Container>
-      <Header>
-        <Button onClick={addTask}>추가</Button>
-      </Header>
+      <AppBox>
+        {todoList.length > 0 && (
+          <TodoListWrapper>
+            {todoList.map((content) => (
+              <TodoItem key={`todoItem-${content}`} onRemove={() => removeTask(content)}>
+                {content}
+              </TodoItem>
+            ))}
+          </TodoListWrapper>
+        )}
+        <Form onSubmit={addTask}>
+          <Input ref={inputRef} placeholder="할 일을 입력하세요" />
+          <Button>추가</Button>
+        </Form>
+      </AppBox>
     </Container>
   );
 }
