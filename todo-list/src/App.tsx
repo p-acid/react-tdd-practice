@@ -1,12 +1,12 @@
 import { AppBox, Container, Form, TodoListWrapper } from 'AppStyle';
-import { Button, Input, TodoItem } from 'Components';
+import { Button, Input, TodoItem } from 'components';
 import { FormEvent, useCallback, useRef, useState } from 'react';
 
 function App() {
   const [todoList, setTodoList] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const addTask = useCallback(
+  const addTodo = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
@@ -25,7 +25,7 @@ function App() {
     [setTodoList, inputRef],
   );
 
-  const removeTask = useCallback(
+  const removeTodo = useCallback(
     (content: string) => {
       setTodoList((prev) => prev.filter((todoItem) => todoItem !== content));
     },
@@ -38,13 +38,13 @@ function App() {
         {todoList.length > 0 && (
           <TodoListWrapper>
             {todoList.map((content) => (
-              <TodoItem key={`todoItem-${content}`} onRemove={() => removeTask(content)}>
+              <TodoItem key={`todoItem-${content}`} onRemove={() => removeTodo(content)}>
                 {content}
               </TodoItem>
             ))}
           </TodoListWrapper>
         )}
-        <Form onSubmit={addTask}>
+        <Form onSubmit={addTodo}>
           <Input ref={inputRef} placeholder="할 일을 입력하세요" />
           <Button>추가</Button>
         </Form>

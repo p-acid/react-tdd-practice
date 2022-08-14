@@ -19,6 +19,7 @@ const Container = styled.button`
 
   &:hover {
     transform: translateY(-1px);
+    background-color: #1a1a1a;
   }
 
   &:active {
