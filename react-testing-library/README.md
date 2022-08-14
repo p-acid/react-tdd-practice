@@ -67,8 +67,8 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
 ```ts
 // custom.d.ts
 
-declare module "*.svg" {
-  import * as React from "react";
+declare module '*.svg' {
+  import * as React from 'react';
 
   export const ReactComponent: React.FunctionComponent<
     React.SVGProps<SVGAElement> & { title?: string }
@@ -77,6 +77,52 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+```
+
+## Prettier, lint-staged, husky
+
+### 패키지 설치
+
+```sh
+yarn add -D prettier lint-staged husky
+```
+
+- `prettier` : 코드 포맷터
+- `lint-staged` : git stage 된 파일들에 특정 동작 수행 가능
+- `husky` : `package.json` 에서 `githook` 사용 가능
+  - `githook` : git의 특정 이벤트를 감지하여 명령 수행
+
+### `.prettierrc.json` 추가
+
+```json
+// exmaple
+{
+  "jsxBracketSameLine": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 100
+}
+```
+
+### `package.json` 수정
+
+```json
+// exmaple
+"script": {
+  ...
+},
+"husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+"lint-staged": {
+  "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+    "prettier --write"
+  ]
+},
+
+...
 ```
 
 # 코드 리팩토링
