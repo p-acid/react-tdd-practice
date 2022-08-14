@@ -1,5 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<App /> renders Button component correctly 1`] = `
+.c0 {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  color: #dfdfdf;
+  background-color: #111111;
+  cursor: pointer;
+  word-break: keep-all;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c0:hover {
+  -webkit-transform: translateY(-1px);
+  -ms-transform: translateY(-1px);
+  transform: translateY(-1px);
+  background-color: #1a1a1a;
+}
+
+.c0:active {
+  -webkit-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  transform: translateY(0px);
+}
+
+<button
+  class="c0"
+>
+  추가
+</button>
+`;
+
+exports[`<App /> renders Input component correctly 1`] = `
+.c0 {
+  padding: 12px;
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  color: #131313;
+  background-color: #ffffff;
+  outline: none;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.c0:focus {
+  box-shadow: 1px black;
+}
+
+<input
+  class="c0"
+  placeholder="default placeholder"
+  value="default value"
+/>
+`;
+
 exports[`<App /> renders component correctly 1`] = `
 Object {
   "debug": [Function],
