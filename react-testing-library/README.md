@@ -79,6 +79,16 @@ declare module '*.svg' {
 }
 ```
 
+## styled-components
+
+```sh
+# package
+yarn add styled-components
+
+# types
+yarn add -D @types/styled-components jest-styled-components
+```
+
 ## Prettier, lint-staged, husky
 
 ### 패키지 설치
