@@ -35,15 +35,13 @@ function App() {
   return (
     <Container>
       <AppBox>
-        {todoList.length > 0 && (
-          <TodoListWrapper>
-            {todoList.map((content) => (
-              <TodoItem key={`todoItem-${content}`} onRemove={() => removeTodo(content)}>
-                {content}
-              </TodoItem>
-            ))}
-          </TodoListWrapper>
-        )}
+        <TodoListWrapper data-testid="todoList">
+          {todoList.map((content) => (
+            <TodoItem key={`todoItem-${content}`} onRemove={() => removeTodo(content)}>
+              {content}
+            </TodoItem>
+          ))}
+        </TodoListWrapper>
         <Form onSubmit={addTodo}>
           <Input ref={inputRef} placeholder="할 일을 입력하세요" />
           <Button>추가</Button>

@@ -2,11 +2,15 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import 'jest-styled-components';
 
 import App from 'App';
-import { Button, Input } from 'components';
+import { Button, Input, TodoItem } from 'components';
 
 describe('<App />', () => {
   it('renders component correctly', () => {
     render(<App />);
+
+    const todoList = screen.getByTestId('todoList');
+
+    expect(todoList).toBeInTheDocument();
 
     expect(screen).toMatchSnapshot();
   });
@@ -54,5 +58,32 @@ describe('<App />', () => {
     expect(inputElement.value).toBe('changed value');
 
     expect(inputElement).toBeInTheDocument();
+  });
+});
+
+describe('<TodoItem />', () => {
+  it('renders component correctly', () => {
+    const onRemoveHandler = jest.fn();
+
+    render(<TodoItem onRemove={onRemoveHandler}>default value</TodoItem>);
+
+    const todoItemElement = screen.getByText('default value');
+    const deleteButton = screen.getByText('삭제');
+
+    expect(todoItemElement).toBeInTheDocument();
+    expect(deleteButton).toBeInTheDocument();
+
+    expect(screen).toMatchSnapshot();
+  });
+  it('click delete button', () => {
+    const onRemoveHandler = jest.fn();
+
+    render(<TodoItem onRemove={onRemoveHandler}>default value</TodoItem>);
+
+    const deleteButton = screen.getByText('삭제');
+
+    expect(onRemoveHandler).toHaveBeenCalledTimes(0);
+    fireEvent.click(deleteButton);
+    expect(onRemoveHandler).toHaveBeenCalledTimes(1);
   });
 });

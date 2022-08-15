@@ -39,6 +39,9 @@ fireEvent.click(element);
 - 위와 같이 해당하는 메서드를 호출하여 이를 테스팅할 수 있다.
   - ex) `toHaveBeenCalledTimes(count: number)` 를 통해 몇 번 호출되었는지 테스팅
 
-##
+## Method
 
 - `getByDisplayValue(id: Matcher)` : `value` 값을 감지하여 요소를 가져옴
+- `getByTestId(testId: string)` : `data-testid` 프로퍼티를 통해 정확하게 요소를 가져옴
+  > ex) `<TodoListWrapper data-testid="todoList">`
+  - DOM에 반영됨
